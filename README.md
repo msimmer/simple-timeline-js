@@ -20,5 +20,5 @@ var options = {debug: true}
 new Timeline(options)
 ```
 
-See more examples in the [docs](https://github.com/msimmer/simple-timeline-js/tree/master/demos) directory.
+See more examples in the [docs](https://github.com/msimmer/simple-timeline-js/tree/master/docs) directory.
 
