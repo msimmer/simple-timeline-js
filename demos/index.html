@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>simple-timeline-js demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../dist/css/index.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .wrap {
+            width: 60vw;
+            margin: 60px auto;
+        }
+        img {
+            max-width: 100%;
+        }
+        .column {
+            float: left;
+        }
+        .column--30 {
+            width: 30%;
+            padding-right: 15px;
+        }
+        .column--70 {
+            width: 70%;
+            padding-left: 15px;
+        }
+        button {
+            outline: none;
+        }
+    </style>
+    <script src="../dist/js/index.js"></script>
+</head>
+<body>
+<div class="wrap">
+        <div class="container__timeline">
+                <ol>
+                    <li data-year="1980">
+                        <div data-marker>1980</div>
+                        <div data-content>
+                            <div class="row">
+                                <div class="column column--30">
+                                    <img src="https://placekitten.com/400/300" alt="">
+                                </div>
+                                <div class="column column--70">
+                                    <h2 class="h3">1980 Title goes here</h2>
+                                    <p>Dolore irure consectetur laboris aute aliqua ut ipsum ea consectetur mollit cillum. Cupidatat ex non eu tempor magna nisi sit ex culpa veniam. Ex veniam id laboris amet cillum consectetur velit. Ad exercitation id proident quis adipisicing et. Labore veniam id et proident qui in culpa ex. Culpa adipisicing laboris aute eu minim nostrud voluptate magna eiusmod laborum nulla aliquip officia esse. Proident magna veniam nisi ea dolor ea commodo quis veniam.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-year="1986">
+                        <div data-marker="">1986</div>
+                        <div data-content>
+                            <div class="row">
+                                <div class="column column--30">
+                                    <img src="https://placekitten.com/420/350" alt="">
+                                </div>
+                                <div class="column column--70">
+                                    <h2 class="h3">1986 title here</h2>
+                                    <p>Dolore irure consectetur laboris aute aliqua ut ipsum ea consectetur mollit cillum. Cupidatat ex non eu tempor magna nisi sit ex culpa veniam. Ex veniam id laboris amet cillum consectetur velit. Ad exercitation id proident quis adipisicing et. Labore veniam id et proident qui in culpa ex. Culpa adipisicing laboris aute eu minim nostrud voluptate magna eiusmod laborum nulla aliquip officia esse. Proident magna veniam nisi ea dolor ea commodo quis veniam.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-year="1991">
+                        <div data-marker="">1991</div>
+                        <div data-content>
+                            <div class="row">
+                                <div class="column column--30">
+                                    <img src="https://placekitten.com/380/280" alt="">
+                                </div>
+                                <div class="column column--70">
+                                    <h2 class="h3">1991 title</h2>
+                                    <p>Dolore irure consectetur laboris aute aliqua ut ipsum ea consectetur mollit cillum. Cupidatat ex non eu tempor magna nisi sit ex culpa veniam. Ex veniam id laboris amet cillum consectetur velit. Ad exercitation id proident quis adipisicing et. Labore veniam id et proident qui in culpa ex. Culpa adipisicing laboris aute eu minim nostrud voluptate magna eiusmod laborum nulla aliquip officia esse. Proident magna veniam nisi ea dolor ea commodo quis veniam.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-year="1994">
+                        <div data-marker="">1994</div>
+                        <div data-content>
+                            <div class="row">
+                                <div class="column column--100">
+                                    <h2 class="h3">1994 title here all the titles lalal</h2>
+                                    <p>Dolore irure consectetur laboris aute aliqua ut ipsum ea consectetur mollit cillum. Cupidatat ex non eu tempor magna nisi sit ex culpa veniam. Ex veniam id laboris amet cillum consectetur velit. Ad exercitation id proident quis adipisicing et. Labore veniam id et proident qui in culpa ex. Culpa adipisicing laboris aute eu minim nostrud voluptate magna eiusmod laborum nulla aliquip officia esse. Proident magna veniam nisi ea dolor ea commodo quis veniam.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <li data-year="2001">
+                    <div data-marker="">2001</div>
+                    <div data-content>
+                        <div class="row">
+                            <div class="column column--30">
+                                <img src="https://placekitten.com/410/310" alt="">
+                            </div>
+                            <div class="column column--70">
+                                <h2 class="h3">title for 2001</h2>
+                                <p>Dolore irure consectetur laboris aute aliqua ut ipsum ea consectetur mollit cillum. Cupidatat ex non eu tempor magna nisi sit ex culpa veniam. Ex veniam id laboris amet cillum consectetur velit. Ad exercitation id proident quis adipisicing et. Labore veniam id et proident qui in culpa ex. Culpa adipisicing laboris aute eu minim nostrud voluptate magna eiusmod laborum nulla aliquip officia esse. Proident magna veniam nisi ea dolor ea commodo quis veniam.</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="controls">
+                <button class="material-icons" data-controls="-1">chevron_left</button>
+                <button class="material-icons" data-controls="1">chevron_right</button>
+            </div> <!-- .controls -->
+
+            <div class="container__view">
+                <div class="view">
+                    <div class="row">
+                        <div class="column column--30">
+                            <img src="https://placekitten.com/490/290" alt="">
+                        </div>
+                        <div class="column column--70">
+                            <h2 class="h3">1980 Title goes here</h2>
+                            <p>Dolore irure consectetur laboris aute aliqua ut ipsum ea consectetur mollit cillum. Cupidatat ex non eu tempor magna nisi sit ex culpa veniam. Ex veniam id laboris amet cillum consectetur velit. Ad exercitation id proident quis adipisicing et. Labore veniam id et proident qui in culpa ex. Culpa adipisicing laboris aute eu minim nostrud voluptate magna eiusmod laborum nulla aliquip officia esse. Proident magna veniam nisi ea dolor ea commodo quis veniam.</p>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- .container__view -->
+
+        </div>
+    </div>
+<script>
+    new Timeline()
+</script>
+</body>
+</html>
