@@ -9,12 +9,13 @@
 
             containerSelector: '.container__timeline',
             listSelector: '.container__timeline > ol',
-            listElementSelector: '[data-year]',
             viewSelector: '.container__view .view',
             contentSelector: '[data-content]',
+            controlsSelector: '[data-controls]',
 
             activeClassName: 'current',
             contentVisibleClassName: 'visible',
+            markerClassName: 'marker',
 
             debug: false,
 
@@ -30,7 +31,7 @@
             }
 
             this.settings = settings
-
+            this.settings.listElementSelector = '[data-year]'
 
             const nodes = this._nodeArray(this.settings.listElementSelector)
 
@@ -49,6 +50,9 @@
 
         }
 
+        _defaults() {
+            return Timeline.defaults
+        }
         _nodeArray(selector) {
             return Array.prototype.slice.call(this._nodeList(selector), 0)
         }
@@ -56,14 +60,29 @@
             return document.querySelectorAll(selector)
         }
 
-        marker(n) {
+        _marker(n) {
             var elem
             elem = document.createElement('div')
             elem.style.position = 'absolute'
-            elem.style.left = n + 'px'
-            elem.classList.add('marker')
+            elem.style.left = `${n}px`
+            elem.style.width = '1px'
+            elem.style.background = 'blue'
+            elem.style.height = '25px'
+            elem.style.top = '-12px'
+
+            elem.classList.add(this.settings.markerClassName)
 
             return elem
+        }
+
+        _removeMarkers() {
+            const markers = this._nodeArray(`.${this.settings.markerClassName}`)
+            let marker
+            while ((marker = markers.pop())) marker.parentNode.removeChild(marker)
+        }
+
+        _addMarker(pos) {
+            this.container.appendChild(this._marker(pos))
         }
 
         placeNodes(nodes) {
@@ -97,7 +116,7 @@
 
             while (n < m) {
 
-                if (this.settings.debug) this.container.appendChild(this.marker(i * step))
+                if (this.settings.debug) this._addMarker(i * step)
 
                 if (years.includes(n)) {
                     document.querySelector('[data-year="'+ n +'"]').style.left = (i * step) + 'px'
@@ -125,11 +144,11 @@
         }
 
         updateContent() {
-            const nodes = this._nodeArray('[data-year].current')
+            const nodes = this._nodeArray(`${this.settings.listElementSelector}.${this.settings.activeClassName}`)
             const lastNode = nodes[nodes.length - 1]
             const content = lastNode.querySelector(this.settings.contentSelector)
 
-            this.view.classList.remove('visible')
+            this.view.classList.remove(this.settings.contentVisibleClassName)
 
             setTimeout(() => {
                 this.view.innerHTML = content.innerHTML
@@ -142,12 +161,12 @@
             const increment = 7
             const pos = start + (increment * dir)
 
-            this.list.style.background = 'linear-gradient( \
-                                         to right, \
-                                         '+ this.settings.gradientColorActive +' 0%, \
-                                         '+ this.settings.gradientColorActive +' '+ pos +'px, \
-                                         '+ this.settings.gradientColorInctive +' '+ pos +'px, \
-                                         '+ this.settings.gradientColorInctive +' 100%)'
+            this.list.style.background = `linear-gradient(
+                                         to right,
+                                         ${this.settings.gradientColorActive} 0%,
+                                         ${this.settings.gradientColorActive} ${pos}px,
+                                         ${this.settings.gradientColorInctive} ${pos}px,
+                                         ${this.settings.gradientColorInctive} 100%)`.replace(/\n\s+/g, '')
 
             if (dir === 1 && pos > stop + increment) return
             if (dir !== 1 && pos < stop + increment) return
@@ -156,7 +175,7 @@
         }
 
         setBackground(nextNode) {
-            const nodes = this._nodeList('[data-year].current')
+            const nodes = this._nodeList(`${this.settings.listElementSelector}.${this.settings.activeClassName}`)
             const prevNode = nodes[nodes.length - 1]
             const start = prevNode.offsetLeft
             const stop = nextNode.offsetLeft
@@ -168,7 +187,7 @@
 
         bindHandlers(nodes) {
             const self = this
-            const buttons = this._nodeList('[data-controls]')
+            const buttons = this._nodeList(this.settings.controlsSelector)
 
             let i
             let j
@@ -185,28 +204,27 @@
             for (j = 0; j < buttons.length; j++) {
                 buttons[j].addEventListener('click', function(e) {
                     e.preventDefault()
-                    var dir = JSON.parse(this.dataset.controls)
-                    var nodes = self._nodeArray('[data-year]')
-                    var current = nodes.filter(function(node) {
-                        return node.classList.contains(self.settings.activeClassName)
-                    })
+                    const dir = JSON.parse(this.dataset.controls)
+                    const nodes = self._nodeArray(self.settings.listElementSelector)
+                    const active = nodes.filter((node) => node.classList.contains(self.settings.activeClassName))
+                    const index = active.length - 1 + dir
 
-                    var index = current.length - 1 + dir
                     if (nodes[index]) nodes[index].click()
+
                 }, false)
             }
 
             window.addEventListener('resize', function() {
                 clearTimeout(resizeTimer)
                 resizeTimer = setTimeout(function() {
-                    var nodes = self._nodeArray('[data-year]')
-                    var current = nodes.filter(function(node) {
-                        return node.classList.contains(self.settings.activeClassName)
-                    })
-                    var node = current[current.length - 1]
+                    const nodes = self._nodeArray(self.settings.listElementSelector)
+                    const active = nodes.filter((node) => node.classList.contains(self.settings.activeClassName))
+                    const node = active[active.length - 1]
 
+                    self._removeMarkers()
                     self.placeNodes(nodes)
                     self.updateBackground(node.offsetLeft, node.offsetLeft, 1)
+
                 }, self.settings.resizeDebounceSpeed)
             }, false)
         }
