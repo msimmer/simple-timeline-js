@@ -5,7 +5,7 @@
 
 A simple JS timeline for the browser. 
 
-[**Demo**]()
+[**Demo**](https://msimmer.github.io/simple-timeline-js/)
 
 ## Install
 

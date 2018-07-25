@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:js": "./node_modules/.bin/babel --presets es2015,stage-0 -d dist/ src/",
     "build:css": "./node_modules/.bin/postcss src/css/index.sss -o dist/css/index.css",
-    "build": "NODE_ENV=production npm run build:js && NODE_ENV=production npm run build:css"
+    "copy": "cp -r dist/css/ docs/ && cp -r dist/js/ docs/",
+    "build": "NODE_ENV=production npm run build:js && NODE_ENV=production npm run build:css && npm run copy"
   },
   "keywords": [],
   "author": "Maxwell Simmer <maxwell.simmer@gmail.com> (http://maxwellsimmer.com)",
