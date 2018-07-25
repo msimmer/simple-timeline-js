@@ -1,0 +1,155 @@
+@custom-media --mobile screen and (max-width: 780px)
+@custom-media --desktop screen and (min-width: 781px)
+
+
+:root
+
+    --red: red
+    --white: white
+    --grey-light: gainsboro
+    --ymedium: 30px
+    --xmedium: 30px
+
+    --ysmall: calc(var(--ymedium) / 2)
+    --xsmall: calc(var(--xmedium) / 2)
+
+    --border-width: 2px
+    --container-width: calc(100% - var(--xmedium) * 3)
+    --width: var(--xsmall)
+    --height: var(--ysmall)
+    --background-active: var(--red)
+    --background-inactive: var(--white)
+    --border-inactive: var(--grey-light)
+    --border-active: var(--red)
+
+
+*, *:before, *:after
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+.marker
+    width: 1px
+    background: blue
+    height: 25px
+    top: 90px
+
+
+
+[data-content]
+    display: none
+
+
+[data-marker]
+    position: relative
+    top: calc(var(--height) * -2)
+    transform: translateX(calc(-50% - 0.35rem))
+    font-size: 0.9rem
+
+.current [data-marker]
+    font-weight: 700
+
+
+@media (--mobile)
+    [data-year]:nth-child(even) [data-marker]
+        top: calc(100% + 12px)
+
+
+
+.controls
+    position: absolute
+    width: 100%
+    height: 0
+
+    @media (--mobile)
+        height: var(--ymedium)
+        position: static
+
+    & [data-controls]
+        position: absolute
+        padding: 0
+        margin: 0
+        top: -16px
+        border-radius: 50%
+        border: var(--border-width) solid var(--border-inactive)
+        width: var(--xmedium)
+        height: var(--ymedium)
+        display: flex
+        align-items: center
+        justify-content: center
+        font-size: 26px
+        color: var(--border-inactive)
+
+        @media (--mobile)
+            top: var(--ymedium)
+
+
+    & [data-controls='-1']  // prev
+        left: calc(var(--xmedium) * -1.5)
+        @media (--mobile)
+            left: 0
+
+
+    & [data-controls='1']  // next
+        right: calc(var(--xmedium) * -1.5)
+        @media (--mobile)
+            right: 0
+
+
+
+
+.container__timeline
+    width: var(--container-width)
+    position: relative
+    margin: var(--ymedium) auto
+    padding: 0
+
+    @media (--mobile)
+        width: 100%
+
+
+
+.container__view
+    padding-top: calc(var(--ymedium) * 2)
+    & .view
+        opacity: 0
+        transition: opacity 0.2s ease
+        &.visible
+            opacity: 1
+
+
+        /* application specific
+        h2
+            @include border-header-none
+            padding-top: 0
+
+        img
+            max-width: 100% */
+
+
+
+
+
+.container__timeline
+    & ol
+        display: block
+        width: 100%
+        height: var(--border-width)
+
+        & li
+            position: absolute
+            list-style: none
+            width: var(--width)
+            height: var(--height)
+            top: calc(var(--height) * -0.433) // optics
+            cursor: pointer
+
+            border: var(--border-width) solid var(--border-inactive)
+            border-radius: 50%
+            background: var(--background-inactive)
+            margin-left: calc(var(--width) / -2)
+
+            &.current
+                border: var(--border-width) solid var(--border-active)
+                background: var(--background-active)
+

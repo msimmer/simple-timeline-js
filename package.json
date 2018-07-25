@@ -1,0 +1,32 @@
+{
+  "name": "simple-timeline-js",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:js": "./node_modules/.bin/babel --presets es2015,stage-0 -d dist/ src/",
+    "build:css": "./node_modules/.bin/postcss src/css/index.sss -o dist/css/index.css",
+    "build": "NODE_ENV=production npm run build:js && NODE_ENV=production npm run build:css"
+  },
+  "keywords": [],
+  "author": "Maxwell Simmer <maxwell.simmer@gmail.com> (http://maxwellsimmer.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msimmer/simple-timeline-js.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cssnano": "^4.0.3",
+    "postcss-calc": "^6.0.1",
+    "postcss-cli": "^6.0.0",
+    "postcss-css-variables": "^0.9.0",
+    "postcss-custom-media": "^6.0.0",
+    "postcss-nesting": "^6.0.0",
+    "sugarss": "^1.0.1"
+  },
+  "dependencies": {}
+}
