@@ -5,4 +5,10 @@
 
 A simple JS timeline for the browser. 
 
+## Install
+
+```
+$ npm i -S simple-timeline-js
+```
+
 See examples in the [demos](https://github.com/msimmer/simple-timeline-js/tree/master/demos) directory.
